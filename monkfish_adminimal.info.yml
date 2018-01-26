@@ -4,5 +4,4 @@ description: 'Install and enable Adminimal theme and Adminimal Admin Toolbar mod
 core: 8.x
 package: 'Custom'
 dependencies:
-  - adminimal_theme
   - adminimal_admin_toolbar
