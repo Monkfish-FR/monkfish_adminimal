@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains monkfish_adminimal.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function monkfish_adminimal_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the monkfish_adminimal module.
+    case 'help.page.monkfish_adminimal':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Install and enable Adminimal theme and Adminimal Admin Toolbar module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_modules_installed().
+ *
+ * @param $modules
+ */
+function monkfish_adminimal_modules_installed($modules) {
+  if (in_array('monkfish_adminimal', $modules)) {
+    $theme = 'adminimal_theme';
+
+    \Drupal::service('theme_installer')->install([$theme]);
+    \Drupal::configFactory()->getEditable('system.theme')->set('admin', $theme)->save(TRUE);
+  }
+}
+
+
